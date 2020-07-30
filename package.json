@@ -1,0 +1,26 @@
+{
+    "name": "game-of-life",
+    "version": "0.0.1",
+    "description": "A JavaScript Implementation of the Conway's Game of Life",
+    "main": "src/index.js",
+    "repository": "https://github.com/boikle/game-of-life.git",
+    "homepage": "https://github.com/boikle/game-of-life.git#readme",
+    "author": "Robert Oikle",
+    "license": "MIT",
+    "private": true,
+    "scripts": {
+        "build": "webpack --config ./webpack.config.js; webpack --config ./webpack.production.config.js",
+        "eslint": "eslint --ignore-path .gitignore --ext .js ./src",
+        "test": "mocha"
+    },
+    "bugs": {
+        "url": "https://github.com/boikle/game-of-life/issues"
+    },
+    "devDependencies": {
+        "css-loader": "^4.1.0",
+        "eslint": "^7.5.0",
+        "mocha": "^8.0.1",
+        "webpack": "^4.44.0",
+        "webpack-cli": "^3.3.12"
+    }
+}
