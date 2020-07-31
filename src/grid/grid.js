@@ -6,7 +6,7 @@ class Grid {
 	constructor(width, height) {
 		this.width = Number(width);
 		this.height = Number(height);
-		this.contents = [];
+		this.matrix = [];
 
 		// Generate a new grid
 		this.generateGrid();
@@ -22,7 +22,7 @@ class Grid {
 			for (j = 0; j < this.height; j += 1) {
 				gridRow.push(0);
 			}
-			this.contents.push(gridRow);
+			this.matrix.push(gridRow);
 		}
 	}
 
@@ -30,16 +30,16 @@ class Grid {
 	* Get the contents of the grid
 	* @return {array} this.contents
 	*/
-	getGridContents() {
-		return this.contents;
+	getMatrix() {
+		return this.matrix;
 	}
 
 	/**
-	* Set the values of the grid contents.
+	* Set the values of the grid.
 	* @param {array} newGrid - A new grid
 	*/
-	setContents(newGrid) {
-		this.contents = newGrid;
+	setMatrix(newGrid) {
+		this.matrix = newGrid;
 	}
 
 	/**
@@ -49,7 +49,7 @@ class Grid {
 	* @return {number} - cell status, either 0 (dead) or 1 (alive).
 	*/
 	getCellStatus(x, y) {
-		return this.contents[x][y];
+		return this.matrix[x][y];
 	}
 
 	/**
@@ -61,7 +61,7 @@ class Grid {
 	* @param {number} status - cell status
 	*/
 	setCellStatus(x, y, status) {
-		this.contents[x][y] = status;
+		this.matrix[x][y] = status;
 	}
 
 	/**
@@ -82,9 +82,9 @@ class Grid {
 			[0,0,0]
 		];
 
-		for (i = 0; 3 > i; i += 1) {
-			for (j = 0; 3 > j; j += 1) {
-				cellValue = this.contents[originX + i][originY + j];
+		for (i = 0; i < 3; i += 1) {
+			for (j = 0; j < 3; j += 1) {
+				cellValue = this.matrix[originX + i][originY + j];
 				// If an alive cellValue exists, update it to 1.
 				// Otherwise leave it as zero
 				if (cellValue) {
@@ -95,3 +95,5 @@ class Grid {
 		return neighbourhood;
 	}
 }
+
+module.exports = Grid;
