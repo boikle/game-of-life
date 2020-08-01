@@ -17,8 +17,20 @@ describe('Grid', function() {
 			assert.equal(JSON.stringify(grid.getMatrix()), JSON.stringify([[1,1,1],[1,1,1],[1,1,1]]));
 		});
 	});
-});
 
+	describe('getCellStatus()', function() {
+		it('The grid cell value should be equal to 1', function() {
+			assert.equal(grid.getCellStatus(1, 1), 1);
+		});
+	});
+
+	describe('setCellStatus()', function() {
+		it('Set a grid cell value to 0', function() {
+			grid.setCellStatus(1, 1, 0);
+			assert.equal(grid.getCellStatus(1, 1), 0);
+		});
+	});
+});
 
 describe('Game Rules', function() {
 	describe('isUnderPopulatedCell()', function() {
