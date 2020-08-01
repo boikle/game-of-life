@@ -30,6 +30,13 @@ describe('Grid', function() {
 			assert.equal(grid.getCellStatus(1, 1), 0);
 		});
 	});
+
+	describe('getCellNeighbourhood()', function() {
+		it('Neighbourhood around the center cell should all be valued as 1', function() {
+			let expectedNeighbourhood = [[1, 1, 1], [1, 0, 1], [1, 1, 1]];
+			assert.equal(JSON.stringify(grid.getCellNeighbourhood(1, 1)), JSON.stringify(expectedNeighbourhood));
+		});
+	});
 });
 
 describe('Game Rules', function() {
