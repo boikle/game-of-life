@@ -1,9 +1,9 @@
 // Grid class for creating Grid objects.
 class Grid {
 	/**
-	* Create a new grid with a set width and height
-	* @constructor
-	*/
+	 * Create a new grid with a set width and height
+	 * @constructor
+	 */
 	constructor(width, height) {
 		this.width = Number(width);
 		this.height = Number(height);
@@ -14,8 +14,8 @@ class Grid {
 	}
 
 	/**
-	* Create a new grid with each cell initialized to 0
-	*/
+	 * Create a new grid with each cell initialized to 0
+	 */
 	populateMatrix() {
 		let i;
 		let j;
@@ -31,50 +31,50 @@ class Grid {
 	}
 
 	/**
-	* Get the contents of the grid
-	* @return {array} this.matrix
-	*/
+	 * Get the contents of the grid
+	 * @return {array} this.matrix
+	 */
 	getMatrix() {
 		return this.matrix;
 	}
 
 	/**
-	* Set the values of the grid.
-	* @param {array} values - An array of values to replace the grid with
-	*/
+	 * Set the values of the grid.
+	 * @param {array} values - An array of values to replace the grid with
+	 */
 	setMatrix(values) {
 		this.matrix = values;
 	}
 
 	/**
-	* Get the cell status for a specified cell
-	* @param {number} x - x coordinate
-	* @param {number} y - y coordinate
-	* @return {number} - cell status, either 0 (dead) or 1 (alive).
-	*/
+	 * Get the cell status for a specified cell
+	 * @param {number} x - x coordinate
+	 * @param {number} y - y coordinate
+	 * @return {number} - cell status, either 0 (dead) or 1 (alive).
+	 */
 	getCellStatus(x, y) {
 		return this.matrix[x][y];
 	}
 
 	/**
-	* Set grid cell status
-	* - 0 = dead cell
-	* - 1 = alive cell
-	* @param {number} x - x coordinate
-	* @param {number} y - y coordinate
-	* @param {number} status - cell status
-	*/
+	 * Set grid cell status
+	 * - 0 = dead cell
+	 * - 1 = alive cell
+	 * @param {number} x - x coordinate
+	 * @param {number} y - y coordinate
+	 * @param {number} status - cell status
+	 */
 	setCellStatus(x, y, status) {
 		this.matrix[x][y] = status;
 	}
 
 	/**
-	* Get the neighbourhood (surrounding 8 cells) of specified cell
-	* @param {number} x - x coordinate
-	* @param {number} y - y coordinate
-	* @return {array} neighbourhood - A multidimensional array representing the
-	* cell's neighbourhood.
-	*/
+	 * Get the neighbourhood (surrounding 8 cells) of specified cell
+	 * @param {number} x - x coordinate
+	 * @param {number} y - y coordinate
+	 * @return {array} neighbourhood - A multidimensional array representing the
+	 * cell's neighbourhood.
+	 */
 	getCellNeighbourhood(x, y) {
 		let cellValue;
 		let i;
@@ -98,6 +98,26 @@ class Grid {
 			}
 		}
 		return neighbourhood;
+	}
+
+	/**
+	 * Count the number of live cells in a provided matrix.
+	 * Live cells have a value of 1, while dead cells have a value of 0.
+	 * @param {array} matrix A multidimensional array containing cell values
+	 * @return {number} The total number of live cells in the matrix.
+	 */
+	countLiveCellsInMatrix(matrix) {
+		let i;
+		let j;
+		let count = 0;
+		for (i = 0; i < matrix.length; i += 1) {
+			for (j = 0; j < matrix[i].length; j += 1) {
+				if (matrix[i][j] === 1) {
+					count += 1;
+				}
+			}
+		}
+		return count;
 	}
 }
 
