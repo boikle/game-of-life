@@ -37,6 +37,13 @@ describe('Grid', function() {
 			assert.equal(JSON.stringify(grid.getCellNeighbourhood(1, 1)), JSON.stringify(expectedNeighbourhood));
 		});
 	});
+
+	describe('countLiveCellsInMatrix()', function() {
+		it('Live cells count in neighbourhood should be 8', function() {
+			let neighbourhoodMatrix = grid.getCellNeighbourhood(1, 1);
+			assert.equal(grid.countLiveCellsInMatrix(neighbourhoodMatrix), 8);
+		});
+	});
 });
 
 describe('Game Rules', function() {
