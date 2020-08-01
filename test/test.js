@@ -1,4 +1,5 @@
 const Grid = require('../src/grid/grid');
+const GameRules = require('../src/rules/rules');
 const assert = require('assert');
 
 describe('Grid', function() {
@@ -8,11 +9,42 @@ describe('Grid', function() {
 			assert.equal(JSON.stringify(grid.getMatrix()), JSON.stringify([[0,0,0],[0,0,0],[0,0,0]]));
 		});
 	});
+
 	describe('setMatrix()', function() {
 		it('The grid values should be updated to a 3x3 matrix of 1s', function() {
 			let newGrid = [[1,1,1],[1,1,1],[1,1,1]];
 			grid.setMatrix(newGrid);
 			assert.equal(JSON.stringify(grid.getMatrix()), JSON.stringify([[1,1,1],[1,1,1],[1,1,1]]));
+		});
+	});
+});
+
+
+describe('Game Rules', function() {
+	describe('isUnderPopulatedCell()', function() {
+		it('A cell will die if less than 2 live cells neighbour it', function() {
+			assert.equal(GameRules.isUnderPopulatedCell(1), true);
+		});
+	});
+
+	describe('isOverPopulatedCell()', function() {
+		it('A cell will die if more than 3 live cells neighbour it', function() {
+			assert.equal(GameRules.isOverPopulatedCell(4), true);
+		});
+	});
+
+	describe('deadCellReproduces()', function() {
+		it('A dead cell will reproduce as a live cell if 3 neighbours are live', function() {
+			assert.equal(GameRules.deadCellReproduces(3), true);
+		});
+	});
+
+	describe('liveCellStaysAlive()', function() {
+		it('A live cell with 2 live cell neighbours stays alive', function() {
+			assert.equal(GameRules.liveCellStaysAlive(2), true);
+		});
+		it('A live cell with 3 live cell neighbours stays alive', function() {
+			assert.equal(GameRules.liveCellStaysAlive(3), true);
 		});
 	});
 });
