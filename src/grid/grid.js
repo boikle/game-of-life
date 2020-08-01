@@ -1,3 +1,4 @@
+// Grid class for creating Grid objects.
 class Grid {
 	/**
 	* Create a new grid with a set width and height
@@ -8,19 +9,22 @@ class Grid {
 		this.height = Number(height);
 		this.matrix = [];
 
-		// Generate a new grid
-		this.generateGrid();
+		// Populate new grid
+		this.populateMatrix();
 	}
 
 	/**
 	* Create a new grid with each cell initialized to 0
 	*/
-	generateGrid() {
-		var i, j, gridRow;
+	populateMatrix() {
+		let i;
+		let j;
+		let gridRow;
+		const defaultCellValue = 0;
 		for (i = 0; i < this.width; i += 1) {
 			gridRow = [];
 			for (j = 0; j < this.height; j += 1) {
-				gridRow.push(0);
+				gridRow.push(defaultCellValue);
 			}
 			this.matrix.push(gridRow);
 		}
@@ -28,7 +32,7 @@ class Grid {
 
 	/**
 	* Get the contents of the grid
-	* @return {array} this.contents
+	* @return {array} this.matrix
 	*/
 	getMatrix() {
 		return this.matrix;
@@ -36,10 +40,10 @@ class Grid {
 
 	/**
 	* Set the values of the grid.
-	* @param {array} newGrid - A new grid
+	* @param {array} values - An array of values to replace the grid with
 	*/
-	setMatrix(newGrid) {
-		this.matrix = newGrid;
+	setMatrix(values) {
+		this.matrix = values;
 	}
 
 	/**
@@ -72,15 +76,16 @@ class Grid {
 	* cell's neighbourhood.
 	*/
 	getCellNeighbourhood(x, y) {
-		var cellValue, i, j;
-		var originX = x - 1;
-		var originY = y - 1;
+		let cellValue;
+		let i;
+		let j;
+		const originX = x - 1;
+		const originY = y - 1;
 		// Create a neighbourhood template, initalized with 0 values
-		var neighbourhood = [
-			[0,0,0],
-			[0,0,0],
-			[0,0,0]
-		];
+		const neighbourhood = [
+			[0, 0, 0],
+			[0, 0, 0],
+			[0, 0, 0]];
 
 		for (i = 0; i < 3; i += 1) {
 			for (j = 0; j < 3; j += 1) {
