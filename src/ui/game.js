@@ -14,18 +14,28 @@ class Game {
 	generate() {
 		const container = document.getElementById(this.containerId);
 
-		const gameWrapper = document.createElement('div');
-		gameWrapper.classList.add('gameoflife-wrapper');
-		container.appendChild(gameWrapper);
+		// Add svg representing the game board to the container.
+		let gameBoard = document.createElement('svg');
+		gameBoard.classList.add('board');
+		container.appendChild(gameBoard);
 
-		// TODO:
-		// - Add Container Div
-		// - Add Empty SVG for visualization
-		// - Add container div for control panel
-		// - Add Buttons to control panel
-		//  - Play Button
-		//  - Random Pattern Button
-		//  - Draw Button
+		// Add control panel to container.
+		let controlPanel = document.createElement('div');
+		controlPanel.classList.add('controlpanel');
+		container.appendChild(controlPanel);
+
+		const drawBtn = document.createElement('button');
+		drawBtn.innerText = "Draw";
+		controlPanel.appendChild(drawBtn);
+
+		const randomBtn = document.createElement('button');
+		randomBtn.innerText = "Random";
+		controlPanel.appendChild(randomBtn);
+
+		const playBtn = document.createElement('button');
+		playBtn.innerText = "Play";
+		controlPanel.appendChild(playBtn);
+
 	}
 }
 
