@@ -5,7 +5,7 @@ module.exports = {
 	entry: './src/index.js',
 	output: {
 		path: path.resolve(__dirname, 'dist'),
-		filename: 'game-of-life.js'
+		filename: 'gameoflife.js'
 	},
 	module: {
 		rules: [
