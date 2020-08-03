@@ -1,31 +1,38 @@
 {
-    "name": "game-of-life",
-    "version": "0.0.1",
-    "description": "A JavaScript Implementation of the Conway's Game of Life",
-    "main": "src/index.js",
-    "repository": "https://github.com/boikle/game-of-life.git",
-    "homepage": "https://github.com/boikle/game-of-life.git#readme",
-    "author": "Robert Oikle",
-    "license": "MIT",
-    "private": true,
-    "scripts": {
-        "build": "webpack --config ./webpack.config.js; webpack --config ./webpack.production.config.js",
-        "eslint": "eslint --ignore-path .gitignore --ext .js ./src",
-        "test": "mocha"
-    },
-    "bugs": {
-        "url": "https://github.com/boikle/game-of-life/issues"
-    },
-    "devDependencies": {
-        "babel-eslint": "^10.1.0",
-        "css-loader": "^4.1.0",
-        "eslint": "^7.5.0",
-        "eslint-config-airbnb": "^18.2.0",
-        "eslint-plugin-import": "^2.22.0",
-        "eslint-plugin-jsx-a11y": "^6.3.1",
-        "eslint-plugin-react": "^7.20.5",
-        "mocha": "^8.0.1",
-        "webpack": "^4.44.0",
-        "webpack-cli": "^3.3.12"
-    }
+  "name": "game-of-life",
+  "version": "0.0.1",
+  "description": "A JavaScript Implementation of the Conway's Game of Life",
+  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/boikle/game-of-life.git"
+  },
+  "homepage": "https://github.com/boikle/game-of-life.git#readme",
+  "author": "Robert Oikle",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "webpack --config ./webpack.config.js",
+    "eslint": "eslint --ignore-path .gitignore --ext .js ./src",
+    "test": "mocha"
+  },
+  "bugs": {
+    "url": "https://github.com/boikle/game-of-life/issues"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "css-loader": "^4.1.0",
+    "eslint": "^7.5.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-react": "^7.20.5",
+    "mocha": "^8.0.1",
+    "style-loader": "^1.2.1",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  },
+  "directories": {
+    "test": "test"
+  }
 }
