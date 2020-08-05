@@ -21,6 +21,8 @@ class Grid {
 		let j;
 		let gridRow;
 		const defaultCellValue = 0;
+		this.matrix = [];
+
 		for (i = 0; i < this.width; i += 1) {
 			gridRow = [];
 			for (j = 0; j < this.height; j += 1) {
