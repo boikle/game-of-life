@@ -1,5 +1,4 @@
 const Rules = require('../rules/rules');
-const Grid = require('../grid/grid');
 const Ui = require('./controls');
 const Board = require('./board');
 
@@ -15,9 +14,11 @@ class Game {
 		const container = document.getElementById(this.containerId);
 
 		// Add svg representing the game board to the container.
-		let gameBoard = document.createElement('svg');
-		gameBoard.classList.add('board');
+		let gameBoard = document.createElement('div');
+		gameBoard.setAttribute('id', 'board');
 		container.appendChild(gameBoard);
+
+		var board = new Board('board');
 
 		// Add control panel to container.
 		let controlPanel = document.createElement('div');
