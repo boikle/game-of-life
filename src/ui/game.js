@@ -37,6 +37,10 @@ class Game {
 
 		const randomBtn = document.createElement('button');
 		randomBtn.innerText = 'Random';
+		randomBtn.onclick = function clickEvent() {
+			const randomizeBoard = new Event('randomizeBoard');
+			document.dispatchEvent(randomizeBoard);
+		};
 		controlPanel.appendChild(randomBtn);
 
 		const playBtn = document.createElement('button');
