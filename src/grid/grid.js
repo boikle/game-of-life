@@ -14,25 +14,6 @@ class Grid {
 	}
 
 	/**
-	 * Create a new grid with each cell initialized to 0
-	 */
-	populateMatrix() {
-		let i;
-		let j;
-		let gridRow;
-		const defaultCellValue = 0;
-		this.matrix = [];
-
-		for (i = 0; i < this.width; i += 1) {
-			gridRow = [];
-			for (j = 0; j < this.height; j += 1) {
-				gridRow.push(defaultCellValue);
-			}
-			this.matrix.push(gridRow);
-		}
-	}
-
-	/**
 	 * Get the contents of the grid
 	 * @return {array} this.matrix
 	 */
@@ -42,17 +23,60 @@ class Grid {
 
 	/**
 	 * Set the values of the grid.
-	 * @param {array} values - An array of values to replace the grid with
+	 * @param {array} values An array of values to replace the grid with
 	 */
 	setMatrix(values) {
 		this.matrix = values;
 	}
 
+	// Generate a grid of cell values that are initialized to 0
+	populateMatrix() {
+		let i;
+		let j;
+		let gridRow;
+		const defaultCellValue = 0;
+		const gridMatrix = [];
+
+		// Create an array of cell values
+		for (i = 0; i < this.width; i += 1) {
+			gridRow = [];
+			for (j = 0; j < this.height; j += 1) {
+				gridRow.push(defaultCellValue);
+			}
+			gridMatrix.push(gridRow);
+		}
+
+		// Set the grid's matrix of cell values.
+		this.setMatrix(gridMatrix);
+	}
+
+	// Generates a grid of random values (1s or 0s)
+	randomMatrix() {
+		let i;
+		let j;
+		let gridRow;
+		let cellValue;
+		const randomMatrix = [];
+
+		// Generate a matrix of random cell values
+		for (i = 0; i < this.width; i += 1) {
+			gridRow = [];
+			for (j = 0; j < this.height; j += 1) {
+				cellValue = Math.round(Math.random(0, 1));
+				gridRow.push(cellValue);
+			}
+			randomMatrix.push(gridRow);
+		}
+
+		// Set the grid cells to the generated random matrix cell values
+		this.setMatrix(randomMatrix);
+	}
+
 	/**
 	 * Get the cell status for a specified cell
-	 * @param {number} x - x coordinate
-	 * @param {number} y - y coordinate
-	 * @return {number} - cell status, either 0 (dead) or 1 (alive).
+	 * @param {number} x the x coordinate value
+	 * @param {number} y the y coordinate value
+	 * @return {number} cell status, either 0 (dead) or 1 (alive).
 	 */
 	getCellStatus(x, y) {
 		return this.matrix[x][y];
@@ -62,9 +86,9 @@ class Grid {
 	 * Set grid cell status
 	 * - 0 = dead cell
 	 * - 1 = alive cell
-	 * @param {number} x - x coordinate
-	 * @param {number} y - y coordinate
-	 * @param {number} status - cell status
+	 * @param {number} x the x coordinate value
+	 * @param {number} y the y coordinate value
+	 * @param {number} status cell status
 	 */
 	setCellStatus(x, y, status) {
 		this.matrix[x][y] = status;
@@ -72,10 +96,10 @@ class Grid {
 
 	/**
 	 * Get the neighbourhood (surrounding 8 cells) of specified cell
-	 * @param {number} x - x coordinate
-	 * @param {number} y - y coordinate
-	 * @return {array} neighbourhood - A multidimensional array representing the
-	 * cell's neighbourhood.
+	 * @param {number} x the x coordinate value
+	 * @param {number} y the y coordinate value
+	 * @return {array} A multidimensional array representing the cell's
+	 * neighbourhood.
 	 */
 	getCellNeighbourhood(x, y) {
 		let cellValue;
@@ -105,7 +129,7 @@ class Grid {
 	/**
 	 * Count the number of live cells in a provided matrix.
 	 * Live cells have a value of 1, while dead cells have a value of 0.
-	 * @param {array} matrix A multidimensional array containing cell values
+	 * @param {array} cells A multidimensional array containing cell values
 	 * @return {number} The total number of live cells in the matrix.
 	 */
 	countLiveCellsInMatrix(matrix) {
