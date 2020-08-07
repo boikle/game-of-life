@@ -4,6 +4,7 @@ const Grid = require('../grid/grid');
 // The board class contains the logic for generating the svg game board using d3.
 class Board {
 	constructor(containerId) {
+		const that = this;
 		this.containerId = containerId;
 		this.container = document.getElementById(this.containerId);
 		// this.width = this.container.innerWidth;
@@ -19,8 +20,17 @@ class Board {
 		// Prepare a dataset using the grid values
 		this.dataset = this.prepareDataset(this.grid.getMatrix());
 
-		// Create Board
-		this.createBoard();
+		// Update Game Board
+		this.updateBoard();
+
+		// Event Handling
+		document.addEventListener('randomizeBoard', () => {
+			console.log('Randomize Game Board');
+			that.grid.randomMatrix();
+			that.dataset = that.prepareDataset(that.grid.getMatrix());
+
+			that.updateBoard();
+		});
 	}
 
 	/**
@@ -56,9 +66,9 @@ class Board {
 		return dataset;
 	}
 
-	// Add the game board to the user interface, which consists of a svg with
-	// a collection of rectangles representing cells.
-	createBoard() {
+	// Add/update the game board to the user interface, which consists of a svg
+	// with a collection of rectangles representing cells.
+	updateBoard() {
 		// Clear container
 		this.container.innerText = '';
 
