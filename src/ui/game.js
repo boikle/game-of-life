@@ -2,7 +2,12 @@ const Rules = require('../rules/rules');
 const Ui = require('./controls');
 const Board = require('./board');
 
+// The main class used to generate the game board and ui
 class Game {
+	/**
+	 * Creates a new Game object
+	 * @constructor
+	 */
 	constructor(containerId) {
 		this.containerId = containerId;
 
@@ -10,6 +15,7 @@ class Game {
 		this.generate();
 	}
 
+	// Generates a the game interface and board.
 	generate() {
 		const container = document.getElementById(this.containerId);
 
