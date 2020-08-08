@@ -38,10 +38,10 @@ describe('Grid', function() {
 		});
 	});
 
-	describe('countLiveCellsInMatrix()', function() {
+	describe('countLiveCells()', function() {
 		it('Live cells count in neighbourhood should be 8', function() {
 			let neighbourhoodMatrix = grid.getCellNeighbourhood(1, 1);
-			assert.equal(grid.countLiveCellsInMatrix(neighbourhoodMatrix), 8);
+			assert.equal(grid.countLiveCells(neighbourhoodMatrix), 8);
 		});
 	});
 });
