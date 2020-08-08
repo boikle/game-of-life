@@ -37,7 +37,7 @@ class Game {
 
 		const randomBtn = document.createElement('button');
 		randomBtn.innerText = 'Random';
-		randomBtn.onclick = function clickEvent() {
+		randomBtn.onclick = () => {
 			const randomizeBoard = new Event('randomizeBoard');
 			document.dispatchEvent(randomizeBoard);
 		};
