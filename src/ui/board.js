@@ -85,6 +85,8 @@ class Board {
 			.attr('x', (d) => d.x)
 			.attr('y', (d) => d.y)
 			.attr('fill', (d) => d.fill)
+			.attr('stroke', '#eeeeee')
+			.attr('stroke-width', 1)
 			.attr('height', this.cellSize)
 			.attr('width', this.cellSize);
 	}
