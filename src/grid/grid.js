@@ -115,7 +115,16 @@ class Grid {
 
 		for (i = 0; i < 3; i += 1) {
 			for (j = 0; j < 3; j += 1) {
-				cellValue = this.matrix[originX + i][originY + j];
+				// Check if neighbouring cells extend beyond grid extent.
+				if ((originX + i) < 0
+					|| (originY + i) < 0
+					|| (originX + i) >= this.width
+					|| (originY + i) >= this.height) {
+					cellValue = 0;
+				} else {
+					cellValue = this.matrix[originX + i][originY + j];
+				}
+
 				// If an alive cellValue exists, update it to 1.
 				// Otherwise leave it as zero
 				if (cellValue) {
@@ -132,7 +141,7 @@ class Grid {
 	 * @param {array} cells A multidimensional array containing cell values
 	 * @return {number} The total number of live cells in the matrix.
 	 */
-	countLiveCellsInMatrix(matrix) {
+	countLiveCells(matrix) {
 		let i;
 		let j;
 		let count = 0;
