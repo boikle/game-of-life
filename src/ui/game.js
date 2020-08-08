@@ -45,6 +45,11 @@ class Game {
 
 		const playBtn = document.createElement('button');
 		playBtn.innerText = 'Play';
+		playBtn.onclick = () => {
+			window.setInterval(function() {
+				board.playRound();
+			}, 500);
+		};
 		controlPanel.appendChild(playBtn);
 	}
 }
