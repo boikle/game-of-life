@@ -1,4 +1,4 @@
-const d3 = require('d3');
+const d3 = require('d3-selection');
 const Grid = require('../grid/grid');
 
 // The board class contains the logic for generating the svg game board using d3.
