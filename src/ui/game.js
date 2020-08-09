@@ -1,5 +1,3 @@
-const Rules = require('../rules/rules');
-const Ui = require('./controls');
 const Board = require('./board');
 
 // The main class used to generate the game board and ui
@@ -17,6 +15,7 @@ class Game {
 
 	// Generates a the game interface and board.
 	generate() {
+		const updateInterval = 500;
 		const container = document.getElementById(this.containerId);
 
 		// Add svg representing the game board to the container.
@@ -48,7 +47,7 @@ class Game {
 		playBtn.onclick = () => {
 			window.setInterval(() => {
 				board.playRound();
-			}, 500);
+			}, updateInterval);
 		};
 		controlPanel.appendChild(playBtn);
 	}
