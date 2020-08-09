@@ -8,15 +8,16 @@ class Board {
 		const that = this;
 		this.containerId = containerId;
 		this.container = document.getElementById(this.containerId);
-		// this.width = this.container.innerWidth;
-		// this.height = this.container.innerHeight;
-		this.width = 800;
-		this.height = 600;
+		this.width = null;
+		this.height = null;
+		this.grid = null;
 		this.cellSize = 10;
 
-		// Create a new grid object and populate it with dead cell values
-		this.grid = new Grid(this.width / this.cellSize, this.height / this.cellSize);
-		this.grid.populateMatrix();
+		// Calculate Grid dimensions
+		this.calcGridDimensions();
+
+		// Update Grid
+		this.updateGrid(this.width, this.height);
 
 		// Prepare a dataset using the grid values
 		this.dataset = this.prepareDataset(this.grid.getMatrix());
@@ -25,13 +26,46 @@ class Board {
 		this.updateBoard();
 
 		// Event Handling
+		window.addEventListener('resize', () => {
+			// Calculate the grid dimensions using new window size
+			this.calcGridDimensions();
+
+			// Update grid based on new window size
+			this.updateGrid(this.width, this.height);
+
+			// Update dataset and board using new grid.
+			this.dataset = this.prepareDataset(this.grid.getMatrix());
+			this.updateBoard();
+		});
+
 		document.addEventListener('randomizeBoard', () => {
-			console.log('Randomize Game Board');
 			that.grid.randomMatrix();
 			that.dataset = that.prepareDataset(that.grid.getMatrix());
 
 			that.updateBoard();
 		});
+	}
+
+	// Calculates the dimensions of the grid (width and height) based on the
+	// available window dimensions.
+	calcGridDimensions() {
+		const widthPadding = 50;
+		const heightPadding = 100;
+		this.width = window.innerWidth - widthPadding;
+		this.height = window.innerHeight - heightPadding;
+	}
+
+	/**
+	 * Update/create a grid with the provided.
+	 * @param {number} width The width of the grid.
+	 * @param {number} height The height of the grid.
+	 */
+	updateGrid(width, height) {
+		// Create a new grid object and populate it with dead cell values
+		const gridWidth = Math.floor(width / this.cellSize);
+		const gridHeight = Math.floor(height / this.cellSize);
+		this.grid = new Grid(gridWidth, gridHeight);
+		this.grid.populateMatrix();
 	}
 
 	// Main function for playing a round in the game.
@@ -118,6 +152,9 @@ class Board {
 	// Add/update the game board to the user interface, which consists of a svg
 	// with a collection of rectangles representing cells.
 	updateBoard() {
+		const strokeColour = '#eeeeee';
+		const strokeWidth = 1;
+
 		// Clear container
 		this.container.innerText = '';
 
@@ -134,8 +171,8 @@ class Board {
 			.attr('x', (d) => d.x)
 			.attr('y', (d) => d.y)
 			.attr('fill', (d) => d.fill)
-			.attr('stroke', '#eeeeee')
-			.attr('stroke-width', 1)
+			//.attr('stroke', strokeColour)
+			//.attr('stroke-width', strokeWidth)
 			.attr('height', this.cellSize)
 			.attr('width', this.cellSize);
 	}
