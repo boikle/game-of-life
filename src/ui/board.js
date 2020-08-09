@@ -1,6 +1,5 @@
 const d3 = require('d3-selection');
 const Grid = require('../grid/grid');
-const Rules = require('../rules/rules');
 
 // The board class contains the logic for generating the svg game board using d3.
 class Board {
@@ -56,7 +55,7 @@ class Board {
 	}
 
 	/**
-	 * Update/create a grid with the provided.
+	 * Update/create a grid with the provided dimensions.
 	 * @param {number} width The width of the grid.
 	 * @param {number} height The height of the grid.
 	 */
@@ -69,49 +68,13 @@ class Board {
 	}
 
 	// Main function for playing a round in the game.
-	// Each cell on the board will be checked to see if changes need to occur
-	// in their status. All cell results will be stored in new matrix for values
-	// and the grid and board will be updated with them values at the end of the
-	// round.
+	// The next generation of grid cell values will be calculated, and the board
+	// will be updated.
 	playRound() {
-		let i;
-		let j;
-		let cellStatus;
-		let cellNeighbourhood;
-		let liveCellCount;
-		const newMatrix = [];
+		// Calculate the next generation of grid cell values.
+		this.grid.calcNextGeneration();
 
-		for (i = 0; i < this.grid.width; i += 1) {
-			const newRow = [];
-			for (j = 0; j < this.grid.height; j += 1) {
-				cellStatus = this.grid.getCellStatus(i, j);
-				cellNeighbourhood = this.grid.getCellNeighbourhood(i, j);
-				liveCellCount = this.grid.countLiveCells(cellNeighbourhood);
-
-				// Check if cell status needs to change based on game rules.
-				if (cellStatus
-					&& Rules.isUnderPopulatedCell(liveCellCount - 1)) {
-					newRow.push(0);
-				} else if (cellStatus
-					&& Rules.isOverPopulatedCell(liveCellCount - 1)) {
-					newRow.push(0);
-				} else if (!cellStatus
-					&& Rules.deadCellReproduces(liveCellCount)) {
-					newRow.push(1);
-				} else if (cellStatus
-					&& Rules.liveCellStaysAlive(liveCellCount - 1)) {
-					newRow.push(1);
-				} else {
-					newRow.push(0);
-				}
-			}
-			newMatrix.push(newRow);
-		}
-
-		// Update grid with newGrid
-		this.grid.setMatrix(newMatrix);
-
-		// Update board with new grid matrix values
+		// Update board with new grid values
 		this.dataset = this.prepareDataset(this.grid.getMatrix());
 		this.updateBoard();
 	}

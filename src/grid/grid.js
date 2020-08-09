@@ -1,3 +1,5 @@
+const Rules = require('../rules/rules');
+
 // Grid class for creating Grid objects.
 class Grid {
 	/**
@@ -70,6 +72,48 @@ class Grid {
 
 		// Set the grid cells to the generated random matrix cell values
 		this.setMatrix(randomMatrix);
+	}
+
+	/**
+	 * Calculate the next generation of grid cell values Using the rules of the
+	 * Game of Life.
+	 */
+	calcNextGeneration() {
+		let i;
+		let j;
+		let cellStatus;
+		let cellNeighbourhood;
+		let liveCellCount;
+		const nextGeneration = [];
+
+		for (i = 0; i < this.width; i += 1) {
+			const newRow = [];
+			for (j = 0; j < this.height; j += 1) {
+				cellStatus = this.getCellStatus(i, j);
+				cellNeighbourhood = this.getCellNeighbourhood(i, j);
+				liveCellCount = this.countLiveCells(cellNeighbourhood);
+
+				// Check if cell status needs to change based on game rules.
+				if (cellStatus
+					&& Rules.isUnderPopulatedCell(liveCellCount - 1)) {
+					newRow.push(0);
+				} else if (cellStatus
+					&& Rules.isOverPopulatedCell(liveCellCount - 1)) {
+					newRow.push(0);
+				} else if (!cellStatus
+					&& Rules.deadCellReproduces(liveCellCount)) {
+					newRow.push(1);
+				} else if (cellStatus
+					&& Rules.liveCellStaysAlive(liveCellCount - 1)) {
+					newRow.push(1);
+				} else {
+					newRow.push(0);
+				}
+			}
+			nextGeneration.push(newRow);
+		}
+		// Update grid with next generation of grid cells.
+		this.setMatrix(nextGeneration);
 	}
 
 	/**
