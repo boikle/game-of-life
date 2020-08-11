@@ -4,7 +4,6 @@ const Grid = require('../grid/grid');
 // The board class contains the logic for generating the svg game board using d3.
 class Board {
 	constructor(containerId) {
-		const that = this;
 		this.containerId = containerId;
 		this.container = document.getElementById(this.containerId);
 		this.width = null;
@@ -23,26 +22,6 @@ class Board {
 
 		// Update Game Board
 		this.updateBoard();
-
-		// Event Handling
-		window.addEventListener('resize', () => {
-			// Calculate the grid dimensions using new window size
-			this.calcGridDimensions();
-
-			// Update grid based on new window size
-			this.updateGrid(this.width, this.height);
-
-			// Update dataset and board using new grid.
-			this.dataset = this.prepareDataset(this.grid.getMatrix());
-			this.updateBoard();
-		});
-
-		document.addEventListener('randomizeBoard', () => {
-			that.grid.randomMatrix();
-			that.dataset = that.prepareDataset(that.grid.getMatrix());
-
-			that.updateBoard();
-		});
 	}
 
 	// Calculates the dimensions of the grid (width and height) based on the
@@ -65,6 +44,27 @@ class Board {
 		const gridHeight = Math.floor(height / this.cellSize);
 		this.grid = new Grid(gridWidth, gridHeight);
 		this.grid.populateMatrix();
+	}
+
+	// Resize the board after the window is resized.
+	resizeBoard() {
+		// Calculate the grid dimensions using new window size
+		this.calcGridDimensions();
+
+		// Update grid based on new window size
+		this.updateGrid(this.width, this.height);
+
+		// Update dataset and board using new grid.
+		this.dataset = this.prepareDataset(this.grid.getMatrix());
+		this.updateBoard();
+	}
+
+	// Randomizes the grid value and update the board.
+	randomizeBoard() {
+		this.grid.randomMatrix();
+		this.dataset = this.prepareDataset(this.grid.getMatrix());
+
+		this.updateBoard();
 	}
 
 	// Main function for playing a round in the game.
