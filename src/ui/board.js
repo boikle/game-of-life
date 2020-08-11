@@ -115,9 +115,6 @@ class Board {
 	// Add/update the game board to the user interface, which consists of a svg
 	// with a collection of rectangles representing cells.
 	updateBoard() {
-		const strokeColour = '#eeeeee';
-		const strokeWidth = 1;
-
 		// Clear container
 		this.container.innerText = '';
 
@@ -134,8 +131,6 @@ class Board {
 			.attr('x', (d) => d.x)
 			.attr('y', (d) => d.y)
 			.attr('fill', (d) => d.fill)
-			//.attr('stroke', strokeColour)
-			//.attr('stroke-width', strokeWidth)
 			.attr('height', this.cellSize)
 			.attr('width', this.cellSize);
 	}
