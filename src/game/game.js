@@ -1,4 +1,5 @@
-const Board = require('./board');
+const Board = require('../ui/board');
+const Controls = require('../ui/controls');
 
 // The main class used to generate the game board and ui
 class Game {
@@ -70,31 +71,11 @@ class Game {
 
 		// Add control panel to container.
 		const controlPanel = document.createElement('div');
-		controlPanel.classList.add('controlpanel');
+		controlPanel.setAttribute('id', 'controlpanel');
 		container.appendChild(controlPanel);
 
-		const drawBtn = document.createElement('button');
-		drawBtn.innerText = 'Draw';
-		drawBtn.classList.add('drawBtn');
-		controlPanel.appendChild(drawBtn);
-
-		const randomBtn = document.createElement('button');
-		randomBtn.innerText = 'Random';
-		randomBtn.classList.add('randomeBtn');
-		randomBtn.onclick = () => {
-			const randomizeBoard = new Event('randomizeBoard');
-			document.dispatchEvent(randomizeBoard);
-		};
-		controlPanel.appendChild(randomBtn);
-
-		const playBtn = document.createElement('button');
-		playBtn.classList.add('playBtn');
-		playBtn.innerText = 'Play';
-		playBtn.onclick = () => {
-			const playBoard = new Event('playBoard');
-			document.dispatchEvent(playBoard);
-		};
-		controlPanel.appendChild(playBtn);
+		// Add controls to control panel.
+		Controls.addControls('controlpanel');
 	}
 }
 

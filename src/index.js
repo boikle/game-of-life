@@ -1,4 +1,4 @@
-import Game from './ui/game';
+import Game from './game/game';
 import './css/gameoflife.css';
 
 // Entry point for the application.
