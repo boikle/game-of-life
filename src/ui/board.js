@@ -43,7 +43,7 @@ class Board {
 		const gridWidth = Math.floor(width / this.cellSize);
 		const gridHeight = Math.floor(height / this.cellSize);
 		this.grid = new Grid(gridWidth, gridHeight);
-		this.grid.populateMatrix();
+		this.grid.zeroMatrix();
 	}
 
 	// Resize the board after the window is resized.
@@ -62,6 +62,14 @@ class Board {
 	// Randomizes the grid value and update the board.
 	randomizeBoard() {
 		this.grid.randomMatrix();
+		this.dataset = this.prepareDataset(this.grid.getMatrix());
+
+		this.updateBoard();
+	}
+
+	// Update board to a predefined patternName
+	predfinedBoard(patternName) {
+		this.grid.predefinedMatrix(patternName);
 		this.dataset = this.prepareDataset(this.grid.getMatrix());
 
 		this.updateBoard();
