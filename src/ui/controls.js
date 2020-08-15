@@ -43,6 +43,29 @@ function addPlayBtnToElement(element) {
 }
 
 /**
+ * Add a drop down menu with a list of known interesting patterns
+ * @param {object} element reference to a document element which will have a
+ * drop down menu appended to it.
+ */
+function addPatternsListToElement(element) {
+	const patternMenu = document.createElement('select');
+	patternMenu.setAttribute('name', 'patterns');
+	patternMenu.setAttribute('id', 'patterns');
+
+	const defaultOption = document.createElement('option');
+	defaultOption.setAttribute('value', '--');
+	defaultOption.innerText = 'Select a pattern';
+	patternMenu.appendChild(defaultOption);
+
+	const gliderOption = document.createElement('option');
+	gliderOption.setAttribute('value', 'glider');
+	gliderOption.innerText = 'Glider';
+	patternMenu.appendChild(gliderOption);
+
+	element.appendChild(patternMenu);
+}
+
+/**
 * Add game of life controls to control panel container.
 * @param {string} controlPanelContainerId Id of the dom element which will be
 * the control panel for the game of life.
@@ -58,4 +81,7 @@ exports.addControls = function addControls(controlPanelContainerId) {
 
 	// Add play button to control panel
 	addPlayBtnToElement(controlPanel);
+
+	// Add patterns select menu to control panel
+	addPatternsListToElement(controlPanel);
 };
