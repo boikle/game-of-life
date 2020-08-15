@@ -62,7 +62,7 @@ function createMenuOption(optValue) {
 function addPatternsListToElement(element) {
 	let i;
 	let option;
-	const options = ['Glider', 'Spaceship', 'Pulsar'];
+	const options = ['Glider', 'Spaceship', 'Pulsar', 'Pentadecathlon'];
 	const patternMenu = document.createElement('select');
 	patternMenu.setAttribute('name', 'patterns');
 	patternMenu.setAttribute('id', 'patterns');
