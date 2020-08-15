@@ -1,3 +1,4 @@
+const Patterns = require('./patterns');
 const Rules = require('../rules/rules');
 
 // Grid class for creating Grid objects.
@@ -11,8 +12,8 @@ class Grid {
 		this.height = Number(height);
 		this.matrix = [];
 
-		// Populate new grid
-		this.populateMatrix();
+		// Populate new grid of zeroes
+		this.zeroMatrix();
 	}
 
 	/**
@@ -32,7 +33,7 @@ class Grid {
 	}
 
 	// Generate a grid of cell values that are initialized to 0
-	populateMatrix() {
+	zeroMatrix() {
 		let i;
 		let j;
 		let gridRow;
@@ -72,6 +73,30 @@ class Grid {
 
 		// Set the grid cells to the generated random matrix cell values
 		this.setMatrix(randomMatrix);
+	}
+
+	/**
+	 * Updates the grid matrix to use a predfined pattern.
+	 * @param {string} patternName Name of predefined pattern
+	 */
+	predefinedMatrix(patternName) {
+		let i;
+		let j;
+		let pattern;
+		// Zero matrix
+		this.zeroMatrix();
+
+		if (Object.hasOwnProperty.call(Patterns.patterns, patternName)) {
+			pattern = Patterns.patterns[patternName];
+
+			for (i = 0; i < pattern.length; i += 1) {
+				for (j = 0; j < pattern[i].length; j += 1) {
+					if (pattern[i][j] === 1) {
+						this.setCellStatus(j, i, 1);
+					}
+				}
+			}
+		}
 	}
 
 	/**
