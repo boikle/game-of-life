@@ -59,7 +59,7 @@ function createMenuOption(optValue) {
  * @param {object} element reference to a document element which will have a
  * drop down menu appended to it.
  */
-function addPatternsListToElement(element) {
+function addPatternsMenuToElement(element) {
 	let i;
 	let option;
 	const options = ['Glider', 'Spaceship', 'Pulsar', 'Pentadecathlon'];
@@ -68,7 +68,7 @@ function addPatternsListToElement(element) {
 	patternMenu.setAttribute('id', 'patterns');
 
 	const defaultOption = document.createElement('option');
-	defaultOption.setAttribute('value', '--');
+	defaultOption.setAttribute('value', '');
 	defaultOption.innerText = 'Select a pattern';
 	patternMenu.appendChild(defaultOption);
 
@@ -76,6 +76,11 @@ function addPatternsListToElement(element) {
 		option = createMenuOption(options[i]);
 		patternMenu.appendChild(option);
 	}
+
+	patternMenu.onchange = () => {
+		const patternSelected = new Event('patternSelected');
+		document.dispatchEvent(patternSelected);
+	};
 
 	element.appendChild(patternMenu);
 }
@@ -98,5 +103,5 @@ exports.addControls = function addControls(controlPanelContainerId) {
 	addPlayBtnToElement(controlPanel);
 
 	// Add patterns select menu to control panel
-	addPatternsListToElement(controlPanel);
+	addPatternsMenuToElement(controlPanel);
 };
