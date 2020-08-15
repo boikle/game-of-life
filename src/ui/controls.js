@@ -43,11 +43,26 @@ function addPlayBtnToElement(element) {
 }
 
 /**
+ * Create the element structure for a new menu option.
+ * @param {string} optValue menu option value.
+ */
+function createMenuOption(optValue) {
+	const option = document.createElement('option');
+	option.setAttribute('value', optValue.toLowerCase());
+	option.innerText = optValue;
+
+	return option;
+}
+
+/**
  * Add a drop down menu with a list of known interesting patterns
  * @param {object} element reference to a document element which will have a
  * drop down menu appended to it.
  */
 function addPatternsListToElement(element) {
+	let i;
+	let option;
+	const options = ['Glider', 'Spaceship'];
 	const patternMenu = document.createElement('select');
 	patternMenu.setAttribute('name', 'patterns');
 	patternMenu.setAttribute('id', 'patterns');
@@ -57,10 +72,10 @@ function addPatternsListToElement(element) {
 	defaultOption.innerText = 'Select a pattern';
 	patternMenu.appendChild(defaultOption);
 
-	const gliderOption = document.createElement('option');
-	gliderOption.setAttribute('value', 'glider');
-	gliderOption.innerText = 'Glider';
-	patternMenu.appendChild(gliderOption);
+	for (i = 0; i < options.length; i += 1) {
+		option = createMenuOption(options[i]);
+		patternMenu.appendChild(option);
+	}
 
 	element.appendChild(patternMenu);
 }
