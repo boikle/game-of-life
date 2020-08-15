@@ -34,13 +34,28 @@ class Game {
 			}
 		});
 
+		document.addEventListener('patternSelected', (event) => {
+			let menuValue = '';
+			if (event
+				&& event.srcElement
+				&& event.srcElement.activeElement
+				&& event.srcElement.activeElement.value) {
+				menuValue = event.srcElement.activeElement.value;
+			}
+
+			if (menuValue && typeof menuValue === 'string') {
+				this.stop();
+				this.board.predfinedBoard(menuValue);
+			}
+		});
+
 		// Generate Conway's Game of Life
 		this.generate();
 	}
 
 	// play the game.
 	play() {
-		const updateInterval = 500;
+		const updateInterval = 400;
 		const playBtn = document.querySelector('#gameoflife .playBtn');
 		playBtn.innerText = 'Pause';
 
