@@ -1,7 +1,8 @@
 #gameoflife {
     margin: 15px;
-    border: 1px solid #333;
+    border: 1px solid #aaa;
     border-radius: 5px;
+    box-shadow: 1px 2px 2px #ccc;
 }
 
 #gameoflife #board {
@@ -9,6 +10,26 @@
 }
 
 #gameoflife #controlpanel {
-    border-top: 1px solid #333;
+    border-top: 1px solid #aaa;
     padding: 5px;
+    background-color: #e6e6e6;
+}
+
+#gameoflife #controlpanel button,
+#gameoflife #controlpanel select {
+    border-radius: 4px;
+    border: 0px solid;
+    background-color: #6c448a;
+    transition: 0.3s ease background-color;
+    color: white;
+    padding: 5px;
+    margin: 0px 3px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#gameoflife #controlpanel button:hover,
+#gameoflife #controlpanel select:hover {
+    background-color: #459696;
+    transition: 0.3s ease background-color;
 }
