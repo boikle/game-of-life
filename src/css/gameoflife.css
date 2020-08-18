@@ -15,6 +15,12 @@
     background-color: #e6e6e6;
 }
 
+#gameoflife #controlpanel .primary-controls,
+#gameoflife #controlpanel .secondary-controls {
+    display: block;
+    padding-top: 5px;
+}
+
 #gameoflife #controlpanel button,
 #gameoflife #controlpanel select {
     border-radius: 4px;
@@ -32,4 +38,14 @@
 #gameoflife #controlpanel select:hover {
     background-color: #459696;
     transition: 0.3s ease background-color;
+}
+
+#gameoflife #controlpanel label.interval-label {
+    color: #6c448a;
+    font-size: 10pt;
+    font-weight: bold;
+    font-family: arial;
+    vertical-align: top;
+    line-height: 20px;
+    padding-left: 5px;
 }

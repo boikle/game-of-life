@@ -28,7 +28,7 @@ class Board {
 	// available window dimensions.
 	calcGridDimensions() {
 		const widthPadding = 50;
-		const heightPadding = 100;
+		const heightPadding = 150;
 		this.width = window.innerWidth - widthPadding;
 		this.height = window.innerHeight - heightPadding;
 	}

@@ -86,6 +86,33 @@ function addPatternsMenuToElement(element) {
 }
 
 /**
+ * Add a slider for setting iteration rate.
+ * @param {object} element reference to a document element which will have a
+ * drop down menu appended to it.
+ */
+function addIterationRateSlider(element) {
+	const label = document.createElement('label');
+	label.setAttribute('for', 'interval');
+	label.classList.add('interval-label');
+	label.innerText = 'Speed: ';
+	element.appendChild(label);
+
+	const intervalSlider = document.createElement('input');
+	intervalSlider.setAttribute('type', 'range');
+	intervalSlider.setAttribute('id', 'interval');
+	intervalSlider.setAttribute('max', '1000');
+	intervalSlider.setAttribute('min', '100');
+	intervalSlider.setAttribute('step', '10');
+	intervalSlider.setAttribute('value', '400');
+
+	intervalSlider.onchange = () => {
+		const intervalChanged = new Event('intervalChanged');
+		document.dispatchEvent(intervalChanged);
+	};
+	element.appendChild(intervalSlider);
+}
+
+/**
 * Add game of life controls to control panel container.
 * @param {string} controlPanelContainerId Id of the dom element which will be
 * the control panel for the game of life.
@@ -93,15 +120,26 @@ function addPatternsMenuToElement(element) {
 exports.addControls = function addControls(controlPanelContainerId) {
 	const controlPanel = document.getElementById(controlPanelContainerId);
 
+	const primaryControls = document.createElement('div');
+	primaryControls.classList.add('primary-controls');
+	controlPanel.appendChild(primaryControls);
+
+	const secondaryControls = document.createElement('div');
+	secondaryControls.classList.add('secondary-controls');
+	controlPanel.appendChild(secondaryControls);
+
 	// Add draw button to control panel
-	addDrawBtnToElement(controlPanel);
+	addDrawBtnToElement(primaryControls);
 
 	// Add random button to control panel
-	addRandomBtnToElement(controlPanel);
+	addRandomBtnToElement(primaryControls);
 
 	// Add play button to control panel
-	addPlayBtnToElement(controlPanel);
+	addPlayBtnToElement(primaryControls);
 
 	// Add patterns select menu to control panel
-	addPatternsMenuToElement(controlPanel);
+	addPatternsMenuToElement(primaryControls);
+
+	// Add interval slider
+	addIterationRateSlider(secondaryControls);
 };

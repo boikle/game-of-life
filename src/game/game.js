@@ -8,6 +8,7 @@ class Game {
 	 * @constructor
 	 */
 	constructor(containerId) {
+		this.interval = 400;
 		this.containerId = containerId;
 		this.playInterval = null;
 		this.board = null;
@@ -49,19 +50,34 @@ class Game {
 			}
 		});
 
+		document.addEventListener('intervalChanged', (event) => {
+			let sliderValue = '';
+			if (event
+				&& event.srcElement
+				&& event.srcElement.activeElement
+				&& event.srcElement.activeElement.value) {
+				sliderValue = event.srcElement.activeElement.value;
+			}
+
+			if (sliderValue && Number(sliderValue)) {
+				this.stop();
+				this.interval = Number(sliderValue);
+				this.play();
+			}
+		});
+
 		// Generate Conway's Game of Life
 		this.generate();
 	}
 
 	// play the game.
 	play() {
-		const updateInterval = 400;
 		const playBtn = document.querySelector('#gameoflife .playBtn');
 		playBtn.innerText = 'Pause';
 
 		this.playInterval = window.setInterval(() => {
 			this.board.playRound();
-		}, updateInterval);
+		}, this.interval);
 	}
 
 	// stop the game.
