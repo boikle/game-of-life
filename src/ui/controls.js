@@ -48,8 +48,8 @@ function addPlayBtnToElement(element) {
  */
 function createMenuOption(optValue) {
 	const option = document.createElement('option');
-	option.setAttribute('value', optValue.toLowerCase());
-	option.innerText = optValue;
+	option.setAttribute('value', optValue.value);
+	option.innerText = optValue.label;
 
 	return option;
 }
@@ -62,7 +62,13 @@ function createMenuOption(optValue) {
 function addPatternsMenuToElement(element) {
 	let i;
 	let option;
-	const options = ['Glider', 'Gosperglidergun', 'Pentadecathlon', 'Pulsar', 'Spaceship'];
+	const options = [
+		{ label: 'Glider', value: 'glider' },
+		{ label: 'Gosper glider gun', value: 'gosperglidergun' },
+		{ label: 'Penta-decathlon', value: 'pentadecathlon' },
+		{ label: 'Pulsar', value: 'pulsar' },
+		{ label: 'Spaceship', value: 'spaceship' },
+	];
 	const patternMenu = document.createElement('select');
 	patternMenu.setAttribute('name', 'patterns');
 	patternMenu.setAttribute('id', 'patterns');
