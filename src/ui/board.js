@@ -10,6 +10,7 @@ class Board {
 		this.height = null;
 		this.grid = null;
 		this.cellSize = 10;
+		this.editingEnabled = false;
 
 		// Calculate Grid dimensions
 		this.calcGridDimensions();
@@ -120,9 +121,29 @@ class Board {
 		return dataset;
 	}
 
+	/**
+	 * Toggle the board cell state.
+	 * If the cell is live, it's switched to dead, and vise versa.
+	 * @param {number} x The cell's x coordinate
+	 * @param {number} y The cell's y coordinate
+	 */
+	toggleCellState(x, y) {
+		const gridX = x / this.cellSize;
+		const gridY = y / this.cellSize;
+		const currentCellStatus = this.grid.getCellStatus(gridX, gridY);
+
+		if (currentCellStatus) {
+			this.grid.setCellStatus(gridX, gridY, 0);
+		} else {
+			this.grid.setCellStatus(gridX, gridY, 1);
+		}
+	}
+
 	// Add/update the game board to the user interface, which consists of a svg
 	// with a collection of rectangles representing cells.
 	updateBoard() {
+		const that = this;
+
 		// Clear container
 		this.container.innerText = '';
 
@@ -135,12 +156,42 @@ class Board {
 		// Generate cell rectangles
 		svg.selectAll('rect')
 			.data(this.dataset)
-			.join('rect')
+			.enter()
+			.append('rect')
 			.attr('x', (d) => d.x)
 			.attr('y', (d) => d.y)
 			.attr('fill', (d) => d.fill)
 			.attr('height', this.cellSize)
-			.attr('width', this.cellSize);
+			.attr('width', this.cellSize)
+			.on('click', (d) => {
+				if (that.editingEnabled) {
+					that.toggleCellState(d.x, d.y);
+					if (d.fill === '#000000') {
+						d.fill = '#ffffff';
+					} else {
+						d.fill = '#000000';
+					}
+
+					d3.select('rect[x="' + d.x + '"][y="' + d.y + '"]')
+						.attr('fill', d.fill);
+				}
+			});
+	}
+
+	/**
+	 * Toggle the edit state of board.
+	 * @param {boolean} editState The state of editing.
+	 * true = enable editing.
+	 * false = disable editing.
+	 */
+	toggleEditing(editState) {
+		if (editState) {
+			this.editingEnabled = true;
+		} else {
+			this.editingEnabled = false;
+			this.dataset = this.prepareDataset(this.grid.getMatrix());
+			this.updateBoard();
+		}
 	}
 }
 

@@ -34,6 +34,7 @@
     cursor: pointer;
 }
 
+#gameoflife #controlpanel button.editing,
 #gameoflife #controlpanel button:hover,
 #gameoflife #controlpanel select:hover {
     background-color: #584b8e;

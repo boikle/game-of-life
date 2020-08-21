@@ -12,22 +12,46 @@ class Game {
 		this.containerId = containerId;
 		this.playInterval = null;
 		this.board = null;
+		this.editing = false;
 
 		// Event Handling
 		window.addEventListener('resize', () => {
-			// Make sure board is stopped before resizing board.
+			// Make sure game is stopped before resizing board.
 			this.stop();
 			this.board.resizeBoard();
 		});
 
 		document.addEventListener('randomizeBoard', () => {
-			// Make sure board is stopped before randomizing cells.
+			// Stop edit session if random button is clicked.
+			if (this.editing) {
+				this.cancelEditing();
+			}
+
+			// Make sure game is stopped before randomizing cells.
 			this.stop();
 			this.board.randomizeBoard();
 		});
 
+		document.addEventListener('editBoard', () => {
+			// Make sure game is stopped before editing the board.
+			this.stop();
+			if (this.editing) {
+				this.editing = false;
+			} else {
+				this.editing = true;
+			}
+
+			this.board.toggleEditing(this.editing);
+		});
+
 		document.addEventListener('playBoard', () => {
 			const playBtn = document.querySelector('#gameoflife .playBtn');
+
+			// Stop edit session if play button is clicked.
+			if (this.editing) {
+				this.cancelEditing();
+			}
+
 			if (playBtn.innerText === 'Play') {
 				this.play();
 			} else {
@@ -68,6 +92,15 @@ class Game {
 
 		// Generate Conway's Game of Life
 		this.generate();
+	}
+
+	// Cancel editing
+	cancelEditing() {
+		const editBtn = document.querySelector('#gameoflife .drawBtn');
+		editBtn.classList.remove('editing');
+
+		this.editing = false;
+		this.board.toggleEditing(this.editing);
 	}
 
 	// play the game.

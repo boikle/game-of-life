@@ -7,6 +7,11 @@ function addDrawBtnToElement(element) {
 	const drawBtn = document.createElement('button');
 	drawBtn.innerText = 'Draw';
 	drawBtn.classList.add('drawBtn');
+	drawBtn.onclick = () => {
+		const editBoard = new Event('editBoard');
+		document.dispatchEvent(editBoard);
+		drawBtn.classList.toggle('editing');
+	};
 	element.appendChild(drawBtn);
 }
 
