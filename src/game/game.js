@@ -52,7 +52,7 @@ class Game {
 				this.cancelEditing();
 			}
 
-			if (playBtn.innerText === 'Play') {
+			if (playBtn.classList.contains('paused')) {
 				this.play();
 			} else {
 				this.stop();
@@ -106,7 +106,8 @@ class Game {
 	// play the game.
 	play() {
 		const playBtn = document.querySelector('#gameoflife .playBtn');
-		playBtn.innerText = 'Pause';
+		playBtn.classList.remove('paused');
+		playBtn.classList.add('playing');
 
 		this.playInterval = window.setInterval(() => {
 			this.board.playRound();
@@ -116,7 +117,8 @@ class Game {
 	// stop the game.
 	stop() {
 		const playBtn = document.querySelector('#gameoflife .playBtn');
-		playBtn.innerText = 'Play';
+		playBtn.classList.add('paused');
+		playBtn.classList.remove('playing');
 
 		window.clearInterval(this.playInterval);
 		this.playInterval = null;

@@ -41,6 +41,23 @@
     transition: 0.3s ease background-color;
 }
 
+/* Pause/Play button style rules */
+#gameoflife #controlpanel button.playBtn {
+    width: 28px;
+    height: 28px;
+    background-size: 24px 24px;
+    background-position: 2px 2px;
+    padding: 8px;
+    vertical-align: top;
+    margin-top: 1px;
+}
+#gameoflife #controlpanel button.playBtn.paused {
+    background-image: url('../icons/play.png');
+}
+#gameoflife #controlpanel button.playBtn.playing {
+    background-image: url('../icons/pause.png');
+}
+
 #gameoflife #controlpanel label.interval-label {
     color: #0077ff;
     font-size: 10pt;

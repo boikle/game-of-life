@@ -39,7 +39,7 @@ function addRandomBtnToElement(element) {
 function addPlayBtnToElement(element) {
 	const playBtn = document.createElement('button');
 	playBtn.classList.add('playBtn');
-	playBtn.innerText = 'Play';
+	playBtn.classList.add('paused');
 	playBtn.onclick = () => {
 		const playBoard = new Event('playBoard');
 		document.dispatchEvent(playBoard);
@@ -131,26 +131,18 @@ function addIterationRateSlider(element) {
 exports.addControls = function addControls(controlPanelContainerId) {
 	const controlPanel = document.getElementById(controlPanelContainerId);
 
-	const primaryControls = document.createElement('div');
-	primaryControls.classList.add('primary-controls');
-	controlPanel.appendChild(primaryControls);
-
-	const secondaryControls = document.createElement('div');
-	secondaryControls.classList.add('secondary-controls');
-	controlPanel.appendChild(secondaryControls);
-
 	// Add draw button to control panel
-	addDrawBtnToElement(primaryControls);
+	addDrawBtnToElement(controlPanel);
 
 	// Add random button to control panel
-	addRandomBtnToElement(primaryControls);
+	addRandomBtnToElement(controlPanel);
 
 	// Add play button to control panel
-	addPlayBtnToElement(primaryControls);
+	addPlayBtnToElement(controlPanel);
 
 	// Add patterns select menu to control panel
-	addPatternsMenuToElement(primaryControls);
+	addPatternsMenuToElement(controlPanel);
 
 	// Add interval slider
-	addIterationRateSlider(secondaryControls);
+	addIterationRateSlider(controlPanel);
 };
