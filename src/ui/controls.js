@@ -7,6 +7,7 @@ const Icons = require('./icons.js');
  */
 function addDrawBtnToElement(element) {
 	const drawBtn = document.createElement('button');
+	drawBtn.setAttribute('title', 'Edit Board');
 	drawBtn.innerText = 'Draw';
 	drawBtn.classList.add('drawBtn');
 	drawBtn.onclick = () => {
@@ -24,6 +25,7 @@ function addDrawBtnToElement(element) {
  */
 function addRandomBtnToElement(element) {
 	const randomBtn = document.createElement('button');
+	randomBtn.setAttribute('title', 'Random Board Generator');
 	randomBtn.innerText = 'Random';
 	randomBtn.classList.add('randomeBtn');
 	randomBtn.onclick = () => {
@@ -40,6 +42,7 @@ function addRandomBtnToElement(element) {
  */
 function addPlayBtnToElement(element) {
 	const playBtn = document.createElement('button');
+	playBtn.setAttribute('title', 'Pause/Play Game');
 	playBtn.classList.add('playBtn');
 	playBtn.classList.add('paused');
 	playBtn.onclick = () => {
@@ -79,6 +82,7 @@ function addPatternsMenuToElement(element) {
 		{ label: 'Spaceship', value: 'spaceship' },
 	];
 	const patternMenu = document.createElement('select');
+	patternMenu.setAttribute('title', 'Interesting Game of Life Patterns');
 	patternMenu.setAttribute('name', 'patterns');
 	patternMenu.setAttribute('id', 'patterns');
 
