@@ -81,7 +81,7 @@ pencilPoint.style.fillOpacity = '1';
 pencilPoint.style.strokeLineJoin = 'round';
 pencilIcon.appendChild(pencilPoint);
 
-// SVG representing a pause icon.
+// SVG representing a random icon.
 const randomIcon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
 randomIcon.setAttribute('viewBox', '0 0 18 18');
 randomIcon.setAttribute('width', '14px');
