@@ -1,3 +1,5 @@
+const Icons = require('./icons.js');
+
 /**
  * Add a draw button to the element argument.
  * @param {object} element reference to a document element which will have a
@@ -44,6 +46,8 @@ function addPlayBtnToElement(element) {
 		const playBoard = new Event('playBoard');
 		document.dispatchEvent(playBoard);
 	};
+
+	playBtn.appendChild(Icons.play);
 	element.appendChild(playBtn);
 }
 

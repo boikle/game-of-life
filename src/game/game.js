@@ -1,5 +1,6 @@
 const Board = require('../ui/board');
 const Controls = require('../ui/controls');
+const Icons = require('../ui/icons');
 
 // The main class used to generate the game board and ui
 class Game {
@@ -109,6 +110,11 @@ class Game {
 		playBtn.classList.remove('paused');
 		playBtn.classList.add('playing');
 
+		// Empty contents of playBtn
+		const oldIcon = playBtn.getElementsByTagName('svg');
+		oldIcon[0].remove();
+		playBtn.appendChild(Icons.pause);
+
 		this.playInterval = window.setInterval(() => {
 			this.board.playRound();
 		}, this.interval);
@@ -119,6 +125,11 @@ class Game {
 		const playBtn = document.querySelector('#gameoflife .playBtn');
 		playBtn.classList.add('paused');
 		playBtn.classList.remove('playing');
+
+		// Empty contents of playBtn
+		const oldIcon = playBtn.getElementsByTagName('svg');
+		oldIcon[0].remove();
+		playBtn.appendChild(Icons.play);
 
 		window.clearInterval(this.playInterval);
 		this.playInterval = null;
