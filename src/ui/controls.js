@@ -8,13 +8,14 @@ const Icons = require('./icons.js');
 function addDrawBtnToElement(element) {
 	const drawBtn = document.createElement('button');
 	drawBtn.setAttribute('title', 'Edit Board');
-	drawBtn.innerText = 'Draw';
 	drawBtn.classList.add('drawBtn');
 	drawBtn.onclick = () => {
 		const editBoard = new Event('editBoard');
 		document.dispatchEvent(editBoard);
 		drawBtn.classList.toggle('editing');
 	};
+
+	drawBtn.appendChild(Icons.pencil);
 	element.appendChild(drawBtn);
 }
 
@@ -26,12 +27,13 @@ function addDrawBtnToElement(element) {
 function addRandomBtnToElement(element) {
 	const randomBtn = document.createElement('button');
 	randomBtn.setAttribute('title', 'Random Board Generator');
-	randomBtn.innerText = 'Random';
 	randomBtn.classList.add('randomeBtn');
 	randomBtn.onclick = () => {
 		const randomizeBoard = new Event('randomizeBoard');
 		document.dispatchEvent(randomizeBoard);
 	};
+
+	randomBtn.appendChild(Icons.random);
 	element.appendChild(randomBtn);
 }
 
