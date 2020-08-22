@@ -1,11 +1,13 @@
+let BannerPlugin = require('webpack/lib/BannerPlugin');
+let fs = require('fs');
 const path = require('path');
 
 module.exports = {
-	mode: 'none',
+	mode: 'production',
 	entry: './src/index.js',
 	output: {
 		path: path.resolve(__dirname, 'dist'),
-		filename: 'gameoflife.js'
+		filename: 'gameoflife.min.js'
 	},
 	module: {
 		rules: [
@@ -14,5 +16,8 @@ module.exports = {
 				use: ['style-loader', 'css-loader']
 			}
 		]
-	}
+	},
+	plugins: [
+		new BannerPlugin(fs.readFileSync('./LICENSE', 'utf8'))
+	]
 };
