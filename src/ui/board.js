@@ -28,7 +28,7 @@ class Board {
 	// Calculates the dimensions of the grid (width and height) based on the
 	// available window dimensions.
 	calcGridDimensions() {
-		const widthPadding = 50;
+		const widthPadding = 0;
 		const heightPadding = 250;
 		this.width = this.container.clientWidth - widthPadding;
 		this.height = window.innerHeight - heightPadding;
