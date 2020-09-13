@@ -120,16 +120,16 @@ class Grid {
 
 				// Check if cell status needs to change based on game rules.
 				if (cellStatus
-					&& Rules.isUnderPopulatedCell(liveCellCount - 1)) {
+					&& Rules.isUnderPopulatedCell(liveCellCount)) {
 					newRow.push(0);
 				} else if (cellStatus
-					&& Rules.isOverPopulatedCell(liveCellCount - 1)) {
+					&& Rules.isOverPopulatedCell(liveCellCount)) {
 					newRow.push(0);
 				} else if (!cellStatus
 					&& Rules.deadCellReproduces(liveCellCount)) {
 					newRow.push(1);
 				} else if (cellStatus
-					&& Rules.liveCellStaysAlive(liveCellCount - 1)) {
+					&& Rules.liveCellStaysAlive(liveCellCount)) {
 					newRow.push(1);
 				} else {
 					newRow.push(0);
@@ -205,8 +205,8 @@ class Grid {
 	}
 
 	/**
-	 * Count the number of live cells in a provided matrix.
-	 * Live cells have a value of 1, while dead cells have a value of 0.
+	 * Count the number of live cells surrounding a center cell in a provided
+	 * matrix. Live cells have a value of 1, while dead cells are 0.
 	 * @param {array} cells A multidimensional array containing cell values
 	 * @return {number} The total number of live cells in the matrix.
 	 */
@@ -216,7 +216,9 @@ class Grid {
 		let count = 0;
 		for (i = 0; i < matrix.length; i += 1) {
 			for (j = 0; j < matrix[i].length; j += 1) {
-				if (matrix[i][j] === 1) {
+				if (i === 1 && j === 1) {
+					// Skip central cell value
+				} else if (matrix[i][j] === 1) {
 					count += 1;
 				}
 			}
