@@ -5,9 +5,9 @@
   "main": "src/index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/boikle/game-of-life.git"
+    "url": "git+https://github.com/roikle/game-of-life.git"
   },
-  "homepage": "https://github.com/boikle/game-of-life.git#readme",
+  "homepage": "https://github.com/roikle/game-of-life.git#readme",
   "author": "Robert Oikle",
   "license": "MIT",
   "private": true,
@@ -17,7 +17,7 @@
     "test": "mocha"
   },
   "bugs": {
-    "url": "https://github.com/boikle/game-of-life/issues"
+    "url": "https://github.com/roikle/game-of-life/issues"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
